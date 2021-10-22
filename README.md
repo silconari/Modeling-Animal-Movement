@@ -19,6 +19,12 @@ ___________________________________________________
 
 ## Setup 
 
+[![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
+
+[![Open in Jupyter Notebook](https://upload.wikimedia.org/wikipedia/commons/3/38/Jupyter_logo.svg)](https://jupyter-notebook-beginner-guide.readthedocs.io/en/latest/execute.html)
+
+[![](https://www.vectorlogo.zone/logos/tensorflow/tensorflow-icon.svg)](https://www.vectorlogo.zone/logos/tensorflow/tensorflow-icon.svg)
+
 
 
 
@@ -50,7 +56,7 @@ Before building a model, it's important to understand the data and be sure that 
 
 ### transforming dataset
 
-I removed NaN, empty and duplicated values and some irrelevant data for my model, like event-id, sensor type, study name... and sorted and chopped my dataset by year. 
+I removed NaN, empty and duplicated values and some irrelevant data for my model, like event-id, sensor type, study name...remains only latitude and longitude sorted and chopped by year. 
 
 #### timestamp
 
@@ -76,9 +82,36 @@ I define a function that generate batches of these windows from the training, ev
 
 ## Features and labels
 
-To split windows of features into features, and labels pairs I made another function. Now, I have mapDatasets for train, test and val. 
+To split windows of features into features and labels pairs I made another function which returns mapDatasets for train and test.
+
+* Features: my input data. Six columns of latitude and longitude sorted by year/animal.
+* Test: the output data. I'm trying to predict the next point (given by a [latitude,longitude]) in an anual whale route.
 
 
-## 
+## Recurrent Neural Network 
+
+Migration is an example of time series data. So I chose a recurrent Neural Network (RNN) called Long Short-Term Memory (tf.keras.layers.LSTM).
+
+An important constructor argument for tf.keras.layers.LSTM, is the return_sequences argument.If False, the default, the layer only returns the output of the final time step, giving the model time to warm up its internal state before making a single prediction.
 
 
+
+## Metrics 
+
+Although the mean squared error is elevated, the curve of loss/mean squared error fits well to test data. Both have similar behaviour.
+
+![loss_mse](assets/loss_mse.png)
+
+The result of the prediction (latitude,longitude coordenates) are quite far of the actual points.
+
+![predict_true](assets/predict_truth.png)
+
+Despite the similarities between the routes of different individuals, it is not possible to train the model with all of them as a set. The loss and train_loss values show steep ups and downs when this occurs, and there are even gaps in the validation data.
+
+![all_routes](assets/all_routes.png)
+
+## Conclusion 
+
+Predict the next point of a route it's complicated. The main problem is make a good data presentation for the model and find a lot of points of the same individuous across the time to make enough windows data to predict the next point on a route given latitude and longitude. 
+
+Other variables related with position like speed maybe be useful to improve the model. 

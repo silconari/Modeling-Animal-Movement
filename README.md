@@ -26,14 +26,12 @@ ___________________________________________________
 [![](https://www.vectorlogo.zone/logos/tensorflow/tensorflow-icon.svg)](https://www.vectorlogo.zone/logos/tensorflow/tensorflow-icon.svg)
 
 
-
-
 ## Whales dataset 🐳
 
 During the period 1993 to 2007, Argos satellite tags were attached to 159 whales, mainly off the coast of California during late summer, of which 92 tracks were >7 d in duration. 
 
 There are 15545 different deployed locations from 143 animals across the years present in this dataset. Also, it contains the date, the time and the individual-local-identifier.
-This  dataset is avaliable in [Movebank.org](https://www.movebank.org/cms/webapp?gwt_fragment=page=studies,path=study650188969)
+This  dataset is avaliable in [Movebank.org](https://www.movebank.org/cms/webapp?gwt_fragment=page=studies,path=study650188969) 🐾
 
 Let's take a glance at the data. Here are the first few rows:
 
@@ -78,6 +76,8 @@ The main features of the input windows are:
 
 My objective is to make a single prediction, a new point in the whale route, given 20 previous points.
 
+![data windowing](assets/whale_data_window.jpg)
+
 I define a function that generate batches of these windows from the training, evaluation, and test data using timeseries_dataset_from_array from keras tensorflow.
 
 ## Features and labels
@@ -115,3 +115,20 @@ Despite the similarities between the routes of different individuals, it is not 
 Predict the next point of a route it's complicated. The main problem is make a good data presentation for the model and find a lot of points of the same individuous across the time to make enough windows data to predict the next point on a route given latitude and longitude. 
 
 Other variables related with position like speed maybe be useful to improve the model. 
+
+Or...
+
+Whales can fly and navigate across the land and sea in a short time.
+
+![all_routes](assets/flying_whale.jpg)
+
+
+
+## References 📖
+
+
+* Wijeyakulasuriya DA, Eisenhauer EW, Shaby BA, Hanks EM (2020) Machine learning for modeling animal movement. PLOS ONE 15(7): e0235750. https://doi.org/10.1371/journal.pone.0235750
+
+* Times series forecasting. Tensorflow. https://www.tensorflow.org/tutorials/structured_data/time_series
+
+* Rew, Jehyeok & Park, Sungwoo & Cho, Yongjang & Jung, Seungwon & Hwang, Eenjun. (2019). Animal Movement Prediction Based on Predictive Recurrent Neural Network. Sensors. 19. 4411. 10.3390/s19204411. 

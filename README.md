@@ -25,6 +25,8 @@ ___________________________________________________
 
 [![](https://www.vectorlogo.zone/logos/tensorflow/tensorflow-icon.svg)](https://www.vectorlogo.zone/logos/tensorflow/tensorflow-icon.svg)
 
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://whales-machine-2021.herokuapp.com/)
+
 
 ## Whales dataset 🐳
 
@@ -62,7 +64,7 @@ This  column gives the complete date and time in hh:mm:ss format. Event record i
 
 ### Split the data
 
-I used a (70%, 20%, 10%) split for the training, validation, and test sets. Note the data is not being randomly shuffled before splitting. 
+I used a (70%, 20%) split for the training and test sets. Note the data is not being randomly shuffled before splitting. 
 
 ## Data windowing
 

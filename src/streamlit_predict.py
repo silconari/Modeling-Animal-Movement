@@ -38,10 +38,10 @@ def render_streamlit():
 
     st.write("The result of the prediction (latitude,longitude coordenates) are quite far of the actual points")
 
-    df_predict = pd.read_csv("../data/predict.csv")
+    df_predict = pd.read_csv(os.path.abspath(os.path.join(
+        os.path.dirname(__file__), "../data/predict.csv")))
 
-    predict_map = folium.Map(
-        location=[37.071452, -122.308833], zoom_start=7)
+    predict_map = folium.Map(location=[37.071452, -122.308833], zoom_start=7)
 
     for point in df_predict.to_numpy():
         folium.Marker(

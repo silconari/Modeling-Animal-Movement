@@ -18,7 +18,8 @@ def render_streamlit():
 
     st.header("**Argos data**")
 
-    df = pd.read_csv("../data/whales.csv")
+    df = pd.read_csv(os.path.abspath(os.path.join(
+        os.path.dirname(__file__), "../data/whales.csv")))
 
     st.dataframe(df)
 
